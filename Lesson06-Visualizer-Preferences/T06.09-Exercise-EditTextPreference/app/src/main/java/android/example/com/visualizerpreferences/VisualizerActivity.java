@@ -70,6 +70,9 @@ public class VisualizerActivity extends AppCompatActivity implements SharedPrefe
                 getString(R.string.pref_color_red_value)));
     }
 
+    private void loadSizeFromSharedPreferences(SharedPreferences sharedPreferences){
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+    }
     // Updates the screen if the shared preferences change. This method is required when you make a
     // class implement OnSharedPreferenceChangedListener
     @Override
@@ -82,6 +85,8 @@ public class VisualizerActivity extends AppCompatActivity implements SharedPrefe
             mVisualizerView.setShowTreble(sharedPreferences.getBoolean(key, getResources().getBoolean(R.bool.pref_show_treble_default)));
         } else if (key.equals(getString(R.string.pref_color_key))) {
             loadColorFromPreferences(sharedPreferences);
+        } else if (key.equals(getString(R.string.pref_size_key))){
+            loadSizeFromSharedPreferences(sharedPreferences);
         }
     }
 
